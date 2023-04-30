@@ -4,11 +4,17 @@ import org.testng.annotations.Test;
 import pages.CareersPage;
 import pages.JobsPage;
 
-public class Task extends Hooks {
+import java.lang.reflect.Method;
+
+import static utils.extentreports.ExtentTestManager.startTest;
+
+public class InsiderTask extends BaseTest {
 
 
-    @Test(description = "Testing something")
-    public void task() {
+    @Test(description = "Quality Assurance Jobs Validation")
+    public void qualityAssurance_JobAdvertsValidation(Method method) {
+
+        startTest(method.getName(), "Quality Assurance Jobs Validation");
         page.navigateToInsiderPage()
                 .verifyUrl("https://useinsider.com/")
                 .navigateCareerPage()

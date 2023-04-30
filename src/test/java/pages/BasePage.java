@@ -10,7 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utilities.Driver;
+import utils.WebDriver.Driver;
+import utils.logs.Log;
 
 import java.time.Duration;
 
@@ -40,6 +41,7 @@ public abstract class BasePage {
         try {
             acceptNecessaryCookiesButton.click();
         }catch (Exception e){
+            Log.debug("No Cookies Pop-Up displayed");
         }
     }
 

@@ -5,7 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import utilities.Driver;
+import utils.WebDriver.Driver;
+import utils.logs.Log;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class CareersPage extends BasePage {
     private List<WebElement> rolesList;
 
     public CareersPage verifyBlocksAreDisplayed(){
+        Log.info("Checking Locations, Teams, and Life at Insider blocks are opened or not");
         verifyElementIsDisplayed(teamsBlock);
         verifyElementIsDisplayed(locationsBlock);
         verifyElementIsDisplayed(lifeAtInsiderBlock);
@@ -46,6 +48,7 @@ public class CareersPage extends BasePage {
      */
     public RolePage navigateRole(Role role) {
         expandJobTitle();
+        Log.info("Navigating selected role: \"" + getRole(role) + "\"");
         for (WebElement element : rolesList) {
             if (!element.isDisplayed()){
                 scrollUntilVisible(element);
@@ -63,6 +66,7 @@ public class CareersPage extends BasePage {
      * With checking rolesList.size() allows us to be sure all roles are listed on page
      */
     private void expandJobTitle(){
+        Log.info("Displaying all roles by clicking \"See All Teams\"");
         int initialSize = rolesList.size();
         click(seeAllTeamsButton);
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//a/h3"),initialSize));
