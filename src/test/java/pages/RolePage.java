@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utilities.WebUtils;
 
 public class RolePage extends BasePage{
 
@@ -10,7 +9,7 @@ public class RolePage extends BasePage{
     private WebElement seeAllJobsButton;
 
     public JobsPage seeAllJobs(){
-        WebUtils.click(seeAllJobsButton);
+        click(seeAllJobsButton);
         return new JobsPage();
     }
 

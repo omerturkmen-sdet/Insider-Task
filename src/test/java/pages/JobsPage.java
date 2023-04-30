@@ -6,13 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import utilities.WebUtils;
 
 import java.util.List;
 
 public class JobsPage extends BasePage {
-    @FindBy(css = "#select2-filter-by-department-container")
+    @FindBy(css = "#filter-by-department")
     private WebElement departmentFilterDropdown;
+
     @FindBy(css = "#filter-by-location")
     private WebElement locationFilterDropdown;
 
@@ -20,23 +20,10 @@ public class JobsPage extends BasePage {
     private List<WebElement> jobList;
 
     @FindBy(xpath = "//div[@id='jobs-list']//p")
-    private List<WebElement> jobPositionList;
-
-    @FindBy(xpath = "//div[@id='jobs-list']//p")
-    public WebElement firstJobPosition;
-
-    @FindBy(xpath = "//div[@id='jobs-list']//span")
-    private List<WebElement> jobDepartmentList;
-
-    @FindBy(css = "div#jobs-list .position-location.text-large")
-    private List<WebElement> jobLocationList;
-
-    public String getSelectedLocation() {
-        return locationFilterDropdown.getAttribute("title");
-    }
+    private WebElement firstJobPosition;
 
     public String getSelectedDepartment() {
-        return departmentFilterDropdown.getAttribute("title");
+        return new Select(departmentFilterDropdown).getFirstSelectedOption().getText();
     }
     public JobsPage verifySelectedDepartment(String department){
         Assert.assertEquals(getSelectedDepartment(), department);
@@ -44,7 +31,7 @@ public class JobsPage extends BasePage {
     }
 
     public JobsPage filterByLocation(Location location) {
-        Select select = new Select(locationFilterDropdown);
+        select = new Select(locationFilterDropdown);
         select.selectByVisibleText(getLocationText(location));
         waitUntilLocationChange(select, location);
         return this;
@@ -54,17 +41,13 @@ public class JobsPage extends BasePage {
         ExpectedCondition<Boolean> expectation = expect ->
                 select.getFirstSelectedOption().getText().equals(getLocationText(location));
         wait.until(expectation);
-        WebUtils.waitFor();
+        waitFor();
     }
 
-    //
+    // Not used all locations. Used some of them for creating a template
     public enum Location {
-        ALL,
-        ISTANBUL_TURKEY,
-        ANKARA_TURKEY,
-        TURKEY,
-        SYDNEY_AUSTRALIA,
-        PARIS_FRANCE
+        ALL, ISTANBUL_TURKEY, ANKARA_TURKEY,
+        TURKEY, SYDNEY_AUSTRALIA, PARIS_FRANCE
     }
 
     public static String getLocationText(Location location) {
@@ -80,7 +63,7 @@ public class JobsPage extends BasePage {
 
     public void verifyJobProperties(String position, String department, String location){
         scrollUntilVisible(firstJobPosition);
-        WebUtils.waitFor();
+        waitFor();
         for (WebElement parent : jobList) {
             WebElement positionElement = parent.findElement(By.xpath(".//p"));
             WebElement departmentElement = parent.findElement(By.xpath(".//span"));

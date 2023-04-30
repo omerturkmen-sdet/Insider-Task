@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import utilities.Driver;
-import utilities.WebUtils;
 
 import java.util.List;
 
@@ -25,10 +24,6 @@ public class CareersPage extends BasePage {
     @FindBy(xpath = "//h2[.='Life at Insider']")
     public WebElement lifeAtInsiderBlock;
 
-    @FindBy(xpath = "(//div[@class='elementor-widget-container'])[13]")
-    public WebElement lifeAtInsider;
-
-
     @FindBy(xpath = "//a[.='See all teams']")
     public WebElement seeAllTeamsButton;
 
@@ -37,14 +32,10 @@ public class CareersPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'career-load-more')]//h3")
     private List<WebElement> rolesList;
 
-
     public CareersPage verifyBlocksAreDisplayed(){
-        scrollUntilVisible(teamsBlock);
-        Assert.assertTrue(teamsBlock.isDisplayed());
-        scrollUntilVisible(locationsBlock);
-        Assert.assertTrue(locationsBlock.isDisplayed());
-        scrollUntilVisible(lifeAtInsiderBlock);
-        Assert.assertTrue(lifeAtInsiderBlock.isDisplayed());
+        verifyElementIsDisplayed(teamsBlock);
+        verifyElementIsDisplayed(locationsBlock);
+        verifyElementIsDisplayed(lifeAtInsiderBlock);
         return this;
     }
 
@@ -57,10 +48,10 @@ public class CareersPage extends BasePage {
         expandJobTitle();
         for (WebElement element : rolesList) {
             if (!element.isDisplayed()){
-                WebUtils.scrollToMiddle(element);
+                scrollUntilVisible(element);
             }
             if (element.getText().equals(getRole(role))) {
-                WebUtils.click(element);
+                click(element);
                 break;
             }
         }
@@ -73,7 +64,7 @@ public class CareersPage extends BasePage {
      */
     private void expandJobTitle(){
         int initialSize = rolesList.size();
-        WebUtils.click(seeAllTeamsButton);
+        click(seeAllTeamsButton);
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//a/h3"),initialSize));
     }
     public static String getRole(Role role) {
@@ -97,21 +88,10 @@ public class CareersPage extends BasePage {
     }
 
     public enum Role {
-        CUSTOMER_SUCCESS,
-        SALES,
-        PRODUCT_ENGINEERING,
-        FINANCE_AND_BUSINESS_SUPPORT,
-        MARKETING,
-        CEOS_EXECUTIVE_OFFICE,
-        PURCHASING_OPERATIONS,
-        PEOPLE_AND_CULTURE,
-        BUSINESS_INTELLIGENCE,
-        SECURITY_ENGINEERING,
-        PARTNERSHIP,
-        QUALITY_ASSURANCE,
-        MOBILE_BUSINESS_UNIT,
-        PARTNER_SUPPORT_DEVELOPMENT,
-        PRODUCT_DESIGN
+        CUSTOMER_SUCCESS, SALES, PRODUCT_ENGINEERING, FINANCE_AND_BUSINESS_SUPPORT, MARKETING,
+        CEOS_EXECUTIVE_OFFICE, PURCHASING_OPERATIONS, PEOPLE_AND_CULTURE, BUSINESS_INTELLIGENCE,
+        SECURITY_ENGINEERING, PARTNERSHIP, QUALITY_ASSURANCE, MOBILE_BUSINESS_UNIT,
+        PARTNER_SUPPORT_DEVELOPMENT, PRODUCT_DESIGN
     }
 
 

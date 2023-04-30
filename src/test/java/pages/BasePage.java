@@ -3,12 +3,14 @@ package pages;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utilities.Driver;
-import utilities.WebUtils;
 
 import java.time.Duration;
 
@@ -24,10 +26,13 @@ public abstract class BasePage {
     public WebDriverWait wait = new WebDriverWait(Driver.get(), Duration.ofSeconds(10));
     JavascriptExecutor js = (JavascriptExecutor) Driver.get();
     Actions actions = new Actions(Driver.get());
+    Select select;
 
+    @CacheLookup
     @FindBy(xpath = "//a[@id='wt-cli-accept-btn']")
     private WebElement acceptNecessaryCookiesButton;
 
+    @CacheLookup
     @FindBy(xpath = "//a[@id='wt-cli-accept-all-btn']")
     private WebElement acceptAllCookiesButton;
 
@@ -76,5 +81,10 @@ public abstract class BasePage {
 
     public WebElement waitUntilClickable(WebElement element){
         return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void verifyElementIsDisplayed(WebElement element){
+        scrollUntilVisible(element);
+        Assert.assertTrue(element.isDisplayed());
     }
 }
