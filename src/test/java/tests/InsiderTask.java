@@ -13,8 +13,10 @@ public class InsiderTask extends BaseTest {
 
     @Test(description = "Quality Assurance Jobs Validation")
     public void qualityAssurance_JobAdvertsValidation(Method method) {
+        String description = "Quality Assurance Jobs Validation";
+        executedTests.add(description);
+        startTest(method.getName(), description);
 
-        startTest(method.getName(), "Quality Assurance Jobs Validation");
         page.navigateToInsiderPage()
                 .verifyUrl("https://useinsider.com/")
                 .navigateCareerPage()

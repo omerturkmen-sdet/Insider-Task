@@ -1,0 +1,23 @@
+[INFO ] 2023-05-01 01:34:55.581 [main] Log - I am in onStart method Insider Task
+[INFO ] 2023-05-01 01:34:57.026 [main] Log - Tests is starting!
+[INFO ] 2023-05-01 01:34:57.543 [main] Log - qualityAssurance_JobAdvertsValidation test is starting.
+[INFO ] 2023-05-01 01:34:57.618 [main] Log - Opening Insider Home Page
+[INFO ] 2023-05-01 01:35:00.852 [main] Log - Checking Insider home page is opened or not
+[INFO ] 2023-05-01 01:35:00.856 [main] Log - Selecting "More" menu in navigation bar then clicking "Careers" page link
+[INFO ] 2023-05-01 01:35:03.655 [main] Log - Checking Locations, Teams, and Life at Insider blocks are opened or not
+[INFO ] 2023-05-01 01:35:05.293 [main] Log - Displaying all roles by clicking "See All Teams"
+[INFO ] 2023-05-01 01:35:06.414 [main] Log - Navigating selected role: "Quality Assurance"
+[INFO ] 2023-05-01 01:35:08.332 [main] Log - Displaying all jobs for the role
+[INFO ] 2023-05-01 01:35:10.114 [main] Log - Filtering job location as: "Istanbul, Turkey"
+[INFO ] 2023-05-01 01:35:10.687 [main] Log - Verifying filtered department match with the specified department: Quality Assurance
+[INFO ] 2023-05-01 01:35:12.368 [main] Log - Verifying job position match with specified position: Quality Assurance
+[INFO ] 2023-05-01 01:35:12.375 [main] Log - Verifying job department match with specified department: Quality Assurance
+[INFO ] 2023-05-01 01:35:12.380 [main] Log - Verifying job location match with specified location: Istanbul, Turkey
+[INFO ] 2023-05-01 01:35:12.386 [main] Log - Verifying that apply button is displayed
+[INFO ] 2023-05-01 01:35:13.060 [main] Log - Verifying job position match with specified position: Quality Assurance
+[INFO ] 2023-05-01 01:35:13.067 [main] Log - Verifying job department match with specified department: Quality Assurance
+[INFO ] 2023-05-01 01:35:13.073 [main] Log - Verifying job location match with specified location: Istanbul, Turkey
+[INFO ] 2023-05-01 01:35:13.078 [main] Log - Verifying that apply button is displayed
+[INFO ] 2023-05-01 01:35:13.716 [main] Log - qualityAssurance_JobAdvertsValidation test is succeed.
+[INFO ] 2023-05-01 01:35:13.720 [main] Log - Tests are ending!
+[INFO ] 2023-05-01 01:35:13.832 [main] Log - I am in onFinish method Insider Task
